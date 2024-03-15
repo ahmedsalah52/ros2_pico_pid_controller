@@ -1,0 +1,8 @@
+sudo docker run --device=/dev/ttyACM0:/dev/ttyACM0 -it --rm --net=host microros/micro-ros-agent:foxy serial --dev /dev/ttyACM0 baudrate=115200
+
+
+
+sudo docker run -it --rm -v /dev:/dev -v /uros_ws:/uros_ws --privileged --net=host nvidiajetson/l4t-ros2-foxy-pytorch:r32.5
+
+
+sudo docker run -it --rm -v /dev:/dev -v /uros_ws:/uros_ws --privileged --net=host dustynv/ros:galactic-ros-base-l4t-r32.5.0
