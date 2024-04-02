@@ -13,16 +13,16 @@ add_executable(pico_controller
     controller/PID/pid.cpp
     controller/quaternion/quaternion.cpp
     controller/controller.cpp
+    imu_GY521/gy_521.cpp
     pico_controller.cpp
     pico_uart_transport.c
 )
 target_link_libraries(pico_controller
     pico_stdlib
     microros
+    hardware_i2c
+    hardware_pwm
 )
-target_link_libraries(pico_controller
-pico_stdlib
-hardware_pwm)
 
 target_include_directories(pico_controller PUBLIC
     libmicroros/include
