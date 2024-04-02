@@ -70,6 +70,10 @@ public:
     Robot_controller();
     
     void Interrupt_function(uint gpio, uint32_t events);
+
+    void Set_X_pos(long double x);
+    void Set_Y_pos(long double y);
+    void Set_Theta(long double t);
     
     double get_Linear_Velocity();
     double get_Angular_Velocity();

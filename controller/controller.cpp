@@ -238,9 +238,11 @@ void Robot_controller::update_Odom()
     // Assuming small delta_theta, calculate approximate linear displacement
     long double cycleDistance = (distance_left + distance_right) / 2.0;
     
-    long double delta_x = cycleDistance * cos(cycleAngle);
-    long double delta_y = cycleDistance * sin(cycleAngle);
-    
+    //long double delta_x = cycleDistance * cos(cycleAngle);
+    //long double delta_y = cycleDistance * sin(cycleAngle);
+    long double delta_x = cycleDistance * cos(this->theta + cycleAngle / 2);
+    long double delta_y = cycleDistance * sin(this->theta + cycleAngle / 2);
+
     long double delta_theta = cycleAngle;
     
     this->X_pos += delta_x;
@@ -249,11 +251,33 @@ void Robot_controller::update_Odom()
 
     
     // Normalize theta to the range [-pi, pi]
-    this->theta = fmod(this->theta, 2.0 * M_PI);
-    if (this->theta < 0)
+    // this->theta = fmod(this->theta, 2.0 * M_PI);
+    // if (this->theta < 0)
+    //     this->theta += 2.0 * M_PI;
+    // this->theta -= M_PI;
+    if (this->theta > M_PI)
+        this->theta -= 2.0 * M_PI;
+    else if (this->theta < -M_PI)
         this->theta += 2.0 * M_PI;
-    this->theta -= M_PI;
+
+
+    // Update previous ticks
+    this->prev_Left_Ticks  = left_ticks;
+    this->prev_Right_Ticks = right_ticks;
 }
+void Robot_controller::Set_X_pos(long double x)
+{
+    this->X_pos = x;
+}
+void Robot_controller::Set_Y_pos(long double y)
+{
+    this->Y_pos = y;
+}
+void Robot_controller::Set_Theta(long double t)
+{
+    this->theta = t;
+}
+
 long double Robot_controller::get_X_pos()
 {
     return this->X_pos;
@@ -266,3 +290,5 @@ long double Robot_controller::get_Theta()
 {
     return this->theta;
 }
+
+
