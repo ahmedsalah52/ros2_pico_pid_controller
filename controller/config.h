@@ -36,11 +36,12 @@
 
 //robot specs
 //dims in meters
-#define wheelbase 0.13  
-#define wheel_radius 0.03
+#define wheelbase 0.133  
+#define wheel_radius 0.0285
 
 
 //odom
-#define Odom_dt 100
+#define Odom_dt 10
 
+#define IMU_dt 10
 
