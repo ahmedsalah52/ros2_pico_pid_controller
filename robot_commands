@@ -4,5 +4,24 @@ sudo docker run --device=/dev/ttyACM0:/dev/ttyACM0 -it --rm --net=host microros/
 
 sudo docker run -it --rm -v /dev:/dev -v /uros_ws:/uros_ws --privileged --net=host nvidiajetson/l4t-ros2-foxy-pytorch:r32.5
 
-
+used:
 sudo docker run -it --rm -v /dev:/dev -v /uros_ws:/uros_ws --privileged --net=host dustynv/ros:galactic-ros-base-l4t-r32.5.0
+sudo micro-ros-agent serial --dev /dev/ttyACM0 baudrate=115200
+
+
+
+ros2 launch rplidar_ros rplidar_a2m8_launch.py
+
+ros2 launch nav2_bringup navigation_launch.py
+ros2 launch slam_toolbox online_async_launch.py
+
+ros2 run tf2_ros static_transform_publisher 0 0 0.15 0 0 0   base_link laser
+ros2 run tf2_ros tf2_echo base_link base_laser
+￼
+
+#server
+rviz
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+
+
+Cannot echo topic 'tf', as it contains more than one type: [geometry_msgs/msg/TransformStamped, tf2_msgs/msg/TFMessage]

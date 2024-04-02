@@ -4,6 +4,8 @@
         "chrono": "cpp",
         "random": "cpp",
         "limits": "cpp",
-        "semaphore": "cpp"
+        "semaphore": "cpp",
+        "memory": "cpp",
+        "compare": "cpp"
     }
 }
