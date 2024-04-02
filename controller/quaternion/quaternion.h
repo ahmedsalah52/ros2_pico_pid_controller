@@ -10,7 +10,12 @@ struct Quaternion {
     double x, y, z, w;
 };
 
+struct Euler {
+    double roll, pitch, yaw;
+};
+
 // Declaration of the EulerToQuaternion function
 Quaternion EulerToQuaternion(double roll, double pitch, double yaw);
+Euler QuaternionToEuler(double x, double y, double z, double w);
 
 #endif // QUATERNION_H
